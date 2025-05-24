@@ -52,27 +52,37 @@ export const calculator = {
 
 export function caesarCipher(word, shift) {
     let charArr = word.split('');
-    newWord = '';
+    let newWord = '';
     charArr.forEach((character) => newWord += shiftCharacter(character, shift));
-    console.log(charArr);
     return newWord;
 }
 
 function shiftCharacter(character, shift) {
     // 97 => 122 a => z
     // 65 => 90 A => Z
-    console.log(character);
     let upper = false;
     let lower = false;
     let code = character.charCodeAt(0);
     if (code >= 65 && code <= 90) upper = true;
     if (code >= 97 && code <= 122) lower = true;
-    console.log(lower);
-    console.log(upper);
     if (!lower && !upper) return character;
     code += shift;
-    if ((lower && code > 122) || (upper && code > 90)) code -= 26;
+    while ((lower && code > 122) || (upper && code > 90)) code -= 26;
     let newChar = String.fromCharCode(code);
-    console.log(newChar);
     return newChar;
+}
+
+export function analyzeArray(array) {
+    let avg = 0;
+    let minimum = array[0];
+    let maximum = array[0];
+    let size = 0;
+    array.forEach((num) => {
+        size++;
+        if (num < minimum) minimum = num;
+        if (num > maximum) maximum = num;
+        avg += num;
+    });
+    avg /= size;
+    return { average: avg, min: minimum, max: maximum, length: size };
 }

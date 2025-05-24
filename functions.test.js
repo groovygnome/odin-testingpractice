@@ -70,4 +70,29 @@ test('caesarCipher abc 3 input', () => {
     expect(caesarCipher('abc', 3)).toBe('def');
 });
 
+test('caeserCipher xyz 3 input (wraparound case)', () => {
+    expect(caesarCipher('xyz', 3)).toBe('abc');
+});
+
+test('caesarCipher HeLLo 3 input (preserve case)', () => {
+    expect(caesarCipher('HeLLo', 3)).toBe('KhOOr');
+});
+
+test('caesarCipher Hello, World!1 3 input (check for non alphabetic chars)', () => {
+    expect(caesarCipher('Hello, World!1', 3)).toBe('Khoor, Zruog!1');
+});
+
+test('caesarCipher xyz 263 input (large cipher number)', () => {
+    expect(caesarCipher('xyz', 263)).toBe('abc');
+});
+
+test('analyzeArray [1,8,3,4,2,6] input', () => {
+    expect(analyzeArray([1, 8, 3, 4, 2, 6])).toStrictEqual({ average: 4, min: 1, max: 8, length: 6 });
+});
+
+test('analyzeArray [1,-8,3,-4,2,6] negative numbers input', () => {
+    expect(analyzeArray([1, -8, 3, -4, 2, 6])).toStrictEqual({ average: 0, min: -8, max: 6, length: 6 });
+});
+
+
 
